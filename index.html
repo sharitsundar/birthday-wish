@@ -4,19 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Love!</title>
-    <!-- Tailwind CSS for modern, responsive layout quickly -->
+    <!-- Stable Tailwind CSS v3 delivery for guaranteed mobile flex centering -->
     <script src="https://jsdelivr.net"></script>
-    <!-- Canvas Confetti Library for the climax explosion -->
     <script src="https://jsdelivr.net"></script>
     <style>
         body {
             background: linear-gradient(135deg, #ffe4e6 0%, #fbcfe8 100%);
             overflow: hidden;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .slide {
             display: none;
-            transition: opacity 0.5s ease-in-out;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 400px; /* Forces a perfect mobile width profile on any screen */
+            padding: 20px;
+            box-sizing: border-box;
         }
         .slide.active {
             display: flex;
@@ -36,112 +49,87 @@
         }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
     </style>
 </head>
-<body class="h-screen w-screen relative flex items-center justify-center p-4 select-none">
+<body class="relative select-none">
 
     <!-- Container for dynamic floating hearts -->
     <div id="heart-container" class="absolute inset-0 pointer-events-none z-0"></div>
 
-    <!-- BACKGROUND MUSIC (Optional: Add a direct URL to an mp3 file) -->
-    <!-- <audio id="bg-music" src="https://example.com" loop></audio> -->
-
     <!-- SCREEN 1: THE ENVELOPE (Curiosity) -->
-    <div id="slide1" class="slide active flex-col items-center justify-center text-center z-10">
-        <div class="text-6xl mb-6 pulse-btn cursor-pointer" onclick="nextSlide(1)">💌</div>
-        <h1 class="text-2xl font-bold text-gray-800">You have a special message...</h1>
-        <p class="text-sm text-gray-500 mt-2">Tap the envelope to open</p>
+    <div id="slide1" class="slide active z-10">
+        <!-- Text elements placed dynamically above the icon -->
+        <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight leading-tight">You have a<br>special message...</h1>
+        <p class="text-sm font-medium text-pink-600 mt-2 tracking-wide uppercase">Tap the envelope to open</p>
+        
+        <!-- Big, centered, pulsing envelope icon -->
+        <div class="text-8xl my-8 pulse-btn cursor-pointer drop-shadow-md select-none" onclick="nextSlide(1)">💌</div>
     </div>
 
     <!-- SCREEN 2: NOSTALGIA & FUN (Emotion: Playful) -->
-    <div id="slide2" class="slide flex-col items-center justify-center text-center z-10">
-        <div class="text-6xl mb-4 animate-bounce">🤪❤️</div>
-        <h2 class="text-3xl font-extrabold text-pink-600 px-4">To my favorite person!</h2>
-        <p class="text-lg text-gray-700 mt-4 px-6 max-w-sm">The one who tolerates my weirdness, makes me laugh till my stomach hurts, and keeps me perfectly sane.</p>
-        <button onclick="nextSlide(2)" class="mt-8 bg-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-pink-600 transition">Next ➡️</button>
+    <div id="slide2" class="slide z-10">
+        <div class="text-7xl mb-6 animate-bounce">🤪❤️</div>
+        <h2 class="text-3xl font-extrabold text-pink-600 px-2">To my favorite person!</h2>
+        <p class="text-base text-gray-700 mt-4 px-4 leading-relaxed">The one who tolerates my weirdness, makes me laugh till my stomach hurts, and keeps me perfectly sane.</p>
+        <button onclick="nextSlide(2)" class="mt-8 bg-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg active:scale-95 transition-transform">Next ➡️</button>
     </div>
 
     <!-- SCREEN 3: DEEP LOVE (Emotion: Romantic) -->
-    <div id="slide3" class="slide flex-col items-center justify-center text-center z-10">
-        <div class="text-6xl mb-4">💖</div>
-        <h2 class="text-3xl font-extrabold text-red-500 px-4">My Whole Heart</h2>
-        <p class="text-lg text-gray-700 mt-4 px-6 max-w-sm">Every single day, I fall in love with you all over again. Thank you for being my rock, my peace, and my happiest destination.</p>
-        <button onclick="nextSlide(3)" class="mt-8 bg-red-500 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-red-600 transition">One more thing... ➡️</button>
+    <div id="slide3" class="slide z-10">
+        <div class="text-7xl mb-6">💖</div>
+        <h2 class="text-3xl font-extrabold text-red-500 px-2">My Whole Heart</h2>
+        <p class="text-base text-gray-700 mt-4 px-4 leading-relaxed">Every single day, I fall in love with you all over again. Thank you for being my rock, my peace, and my happiest destination.</p>
+        <button onclick="nextSlide(3)" class="mt-8 bg-red-500 text-white font-bold py-3 px-8 rounded-full shadow-lg active:scale-95 transition-transform">One more thing... ➡️</button>
     </div>
 
-    <!-- SCREEN 4: THE CLIMAX (Emotion: Celebration / Birthday Wish) -->
-    <div id="slide4" class="slide flex-col items-center justify-center text-center z-10">
-        <div class="text-7xl mb-4">🎂✨🎉</div>
-        <h1 class="text-4xl font-black text-pink-600 drop-shadow-sm animate-pulse">HAPPY BIRTHDAY, MY LOVE!</h1>
-        <p class="text-xl font-semibold text-gray-800 mt-4 px-4">May this year bring you all the endless joy and magic you bring into my life every single day.</p>
-        <p class="text-md text-red-500 font-bold mt-6 italic">I love you infinitely. ❤️</p>
+    <!-- SCREEN 4: THE CLIMAX (Emotion: Celebration) -->
+    <div id="slide4" class="slide z-10">
+        <div class="text-8xl mb-6">🎂✨🎉</div>
+        <h1 class="text-4xl font-black text-pink-600 tracking-tight leading-none drop-shadow-sm">HAPPY BIRTHDAY,<br>MY LOVE!</h1>
+        <p class="text-lg font-semibold text-gray-800 mt-6 px-2">May this year bring you all the endless joy and magic you bring into my life every single day.</p>
+        <p class="text-lg text-red-500 font-extrabold mt-6 italic">I love you infinitely. ❤️</p>
     </div>
 
     <script>
-        // Handle screen transitions
         function nextSlide(currentIndex) {
-            // Play background music on first tap if you configured it
             if (currentIndex === 1) {
-                const music = document.getElementById('bg-music');
-                if (music) music.play().catch(e => console.log("Audio play blocked until interaction"));
-                // Start continuous floating hearts
                 setInterval(createHeart, 400);
             }
 
-            // Move to next screen
             document.getElementById(`slide${currentIndex}`).classList.remove('active');
             const next = document.getElementById(`slide${currentIndex + 1}`);
             next.classList.add('active');
 
-            // Trigger confetti if it's the final birthday screen
             if (currentIndex === 3) {
                 triggerConfettiExplosion();
             }
         }
 
-        // Generate floating background hearts
         function createHeart() {
             const container = document.getElementById('heart-container');
             const heart = document.createElement('div');
             heart.classList.add('heart-float');
             heart.innerText = ['❤️', '💖', '💝', '💕', '🌸'][Math.floor(Math.random() * 5)];
             
-            // Randomize position and timing
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
             heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
             
             container.appendChild(heart);
-            
-            // Clean up heart after animation finish
             setTimeout(() => { heart.remove(); }, 5000);
         }
 
-        // Confetti explosion physics
         function triggerConfettiExplosion() {
-            var duration = 5 * 1000;
+            var duration = 6 * 1000;
             var end = Date.now() + duration;
 
             (function frame() {
-                confetti({
-                    particleCount: 3,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.8 }
-                });
-                confetti({
-                    particleCount: 3,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.8 }
-                });
-
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0, y: 0.8 } });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1, y: 0.8 } });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
             }());
         }
     </script>
